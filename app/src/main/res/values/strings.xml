@@ -1,0 +1,18 @@
+<resources>
+    <string name="app_name">Session</string>
+    <string name="back">Back</string>
+    <string name="subject">Subject</string>
+    <string name="location">Location</string>
+    <string name="type">Type</string>
+    <string name="start">Start</string>
+    <string name="end">End</string>
+    <string name="account">Account</string>
+    <string name="opportunity">Opportunity</string>
+    <string name="lead">Lead</string>
+    <string name="primary_contact">Primary Contact</string>
+    <string name="description">Description</string>
+    <string name="invitees">Invitees</string>
+    <string name="call">Call</string>
+    <string name="send_sms">Send SMS</string>
+    <string name="send_email">Send Email</string>
+</resources>

@@ -1,0 +1,366 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="activity"
+            type="js.technology.session.ui.details.DetailsActivity" />
+
+        <variable
+            name="session"
+            type="js.technology.session.data.model.db.Session" />
+
+    </data>
+
+
+    <androidx.coordinatorlayout.widget.CoordinatorLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <com.google.android.material.appbar.AppBarLayout
+            android:id="@+id/app_bar_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <androidx.appcompat.widget.Toolbar
+                android:layout_width="match_parent"
+                android:layout_height="?attr/actionBarSize">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <com.google.android.material.textview.MaterialTextView
+                        android:id="@+id/txt_back"
+                        style="@style/MaterialTextViewBodyStyle"
+                        android:layout_width="0dp"
+                        android:layout_height="0dp"
+                        android:background="?android:attr/selectableItemBackground"
+                        android:clickable="true"
+                        android:drawableStart="@drawable/ic_back"
+                        android:focusable="true"
+                        android:gravity="start|center"
+                        android:onClick="@{()->activity.finish()}"
+                        android:text="@string/back"
+                        android:textColor="@color/colorWhite"
+                        app:layout_constraintBottom_toBottomOf="@id/txt_toolbar"
+                        app:layout_constraintEnd_toStartOf="@+id/txt_toolbar"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="@id/txt_toolbar"
+                        app:layout_constraintWidth_percent="0.2" />
+
+                    <com.google.android.material.textview.MaterialTextView
+                        android:id="@+id/txt_toolbar"
+                        style="@style/MaterialToolBarTitleStyle"
+                        android:layout_width="0dp"
+                        android:layout_height="0dp"
+                        android:gravity="start|center"
+                        android:padding="@dimen/spacing_icon_padding"
+                        android:text="@{session.Subject}"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toEndOf="@+id/txt_back"
+                        app:layout_constraintTop_toTopOf="parent"
+                        tools:text="@string/subject" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+            </androidx.appcompat.widget.Toolbar>
+        </com.google.android.material.appbar.AppBarLayout>
+
+        <androidx.core.widget.NestedScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginStart="@dimen/spacing_medium"
+                android:layout_marginEnd="@dimen/spacing_medium">
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/txt_title_subject"
+                    style="@style/MaterialTextViewBodyStyle"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:padding="@dimen/spacing_medium"
+                    android:text="@string/subject"
+                    app:layout_constraintBottom_toTopOf="@+id/txt_subject"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/txt_subject"
+                    style="@style/MaterialTextViewTitleStyle"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:padding="@dimen/spacing_medium"
+                    android:text="@{session.Subject}"
+                    app:layout_constraintBottom_toTopOf="@+id/txt_title_location"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/txt_title_subject"
+                    tools:text="@string/subject" />
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/txt_title_location"
+                    style="@style/MaterialTextViewBodyStyle"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:padding="@dimen/spacing_medium"
+                    android:text="@string/location"
+                    app:layout_constraintBottom_toTopOf="@+id/txt_location"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/txt_subject" />
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/txt_location"
+                    style="@style/MaterialTextViewTitleStyle"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:padding="@dimen/spacing_medium"
+                    android:text="@{session.Location}"
+                    app:layout_constraintBottom_toTopOf="@id/txt_title_type"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/txt_title_location"
+                    tools:text="@string/location" />
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/txt_title_type"
+                    style="@style/MaterialTextViewBodyStyle"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:padding="@dimen/spacing_medium"
+                    android:text="@string/type"
+                    app:layout_constraintBottom_toTopOf="@+id/txt_type"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/txt_location" />
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/txt_type"
+                    style="@style/MaterialTextViewTitleStyle"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:padding="@dimen/spacing_medium"
+                    android:text="@{session.ActivityType}"
+                    app:layout_constraintBottom_toTopOf="@+id/txt_title_start"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/txt_title_type"
+                    tools:text="@string/type" />
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/txt_title_start"
+                    style="@style/MaterialTextViewBodyStyle"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:padding="@dimen/spacing_medium"
+                    android:text="@string/start"
+                    app:layout_constraintBottom_toTopOf="@+id/txt_start"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/txt_type" />
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/txt_start"
+                    style="@style/MaterialTextViewTitleStyle"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:padding="@dimen/spacing_medium"
+                    app:layout_constraintBottom_toTopOf="@+id/txt_title_end"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/txt_title_start"
+                    app:text_full_date="@{session.ActivityStartDate}"
+                    tools:text="@string/start" />
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/txt_title_end"
+                    style="@style/MaterialTextViewBodyStyle"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:padding="@dimen/spacing_medium"
+                    android:text="@string/end"
+                    app:layout_constraintBottom_toTopOf="@+id/txt_end"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/txt_start" />
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/txt_end"
+                    style="@style/MaterialTextViewTitleStyle"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:padding="@dimen/spacing_medium"
+                    app:layout_constraintBottom_toTopOf="@+id/txt_title_account"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/txt_title_end"
+                    app:text_full_date="@{session.ActivityEndDate}"
+                    tools:text="@string/end" />
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/txt_title_account"
+                    style="@style/MaterialTextViewBodyStyle"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:padding="@dimen/spacing_medium"
+                    android:text="@string/account"
+                    app:layout_constraintBottom_toTopOf="@+id/txt_account"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/txt_end" />
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/txt_account"
+                    style="@style/MaterialTextViewTitleStyle"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:padding="@dimen/spacing_medium"
+                    android:text="@{session.AccountName}"
+                    app:layout_constraintBottom_toTopOf="@+id/txt_title_opportunity"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/txt_title_account"
+                    tools:text="@string/account" />
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/txt_title_opportunity"
+                    style="@style/MaterialTextViewBodyStyle"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:padding="@dimen/spacing_medium"
+                    android:text="@string/opportunity"
+                    app:layout_constraintBottom_toTopOf="@+id/txt_opportunity"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/txt_account" />
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/txt_opportunity"
+                    style="@style/MaterialTextViewTitleStyle"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:padding="@dimen/spacing_medium"
+                    android:text="@{session.OpportunityName}"
+                    app:layout_constraintBottom_toTopOf="@id/txt_title_lead"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/txt_title_opportunity"
+                    tools:text="@string/opportunity" />
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/txt_title_lead"
+                    style="@style/MaterialTextViewBodyStyle"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:padding="@dimen/spacing_medium"
+                    android:text="@string/lead"
+                    app:layout_constraintBottom_toTopOf="@+id/txt_lead"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/txt_opportunity" />
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/txt_lead"
+                    style="@style/MaterialTextViewTitleStyle"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:padding="@dimen/spacing_medium"
+                    android:text="@{session.LeadName}"
+                    app:layout_constraintBottom_toTopOf="@+id/txt_title_primary_contact"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/txt_title_lead"
+                    tools:text="@string/lead" />
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/txt_title_primary_contact"
+                    style="@style/MaterialTextViewBodyStyle"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:padding="@dimen/spacing_medium"
+                    android:text="@string/primary_contact"
+                    app:layout_constraintBottom_toTopOf="@+id/txt_primary_contact"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/txt_lead" />
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/txt_primary_contact"
+                    style="@style/MaterialTextViewTitleStyle"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:padding="@dimen/spacing_medium"
+                    android:text="@{session.PrimaryContactName}"
+                    app:layout_constraintBottom_toTopOf="@+id/txt_title_description"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/txt_title_primary_contact"
+                    tools:text="@string/primary_contact" />
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/txt_title_description"
+                    style="@style/MaterialTextViewBodyStyle"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:padding="@dimen/spacing_medium"
+                    android:text="@string/description"
+                    app:layout_constraintBottom_toTopOf="@+id/txt_description"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/txt_primary_contact" />
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/txt_description"
+                    style="@style/MaterialTextViewTitleStyle"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:padding="@dimen/spacing_medium"
+                    android:text="@{session.Description}"
+                    app:layout_constraintBottom_toTopOf="@id/txt_title_invitees"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/txt_title_description"
+                    tools:text="@string/description" />
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/txt_title_invitees"
+                    style="@style/MaterialTextViewTitleStyle"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/spacing_card_padding"
+                    android:layout_marginBottom="@dimen/spacing_card_padding"
+                    android:padding="@dimen/spacing_medium"
+                    android:text="@string/invitees"
+                    android:textColor="@color/colorPrimary"
+                    app:layout_constraintBottom_toTopOf="@+id/recycler_view_invitees"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/txt_description" />
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/recycler_view_invitees"
+                    adapter_invitees="@{activity.getInviteesObservableList()}"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/txt_title_invitees"
+                    tools:listitem="@layout/item_invitees" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </androidx.core.widget.NestedScrollView>
+
+    </androidx.coordinatorlayout.widget.CoordinatorLayout>
+</layout>

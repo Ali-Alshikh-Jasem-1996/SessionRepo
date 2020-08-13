@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="invitees"
+            type="js.technology.session.data.model.db.Invitees" />
+
+        <variable
+            name="position"
+            type="Integer" />
+
+        <variable
+            name="clickItem"
+            type="js.technology.session.ui.details.InviteeClickEvent" />
+
+    </data>
+
+    <com.google.android.material.card.MaterialCardView
+        style="@style/MaterialCardViewStyle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/bg_card_view"
+            android:onClick="@{(view)->clickItem.InviteeClick(view,position)}"
+            android:padding="@dimen/spacing_card_padding">
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/txt_icon_short_name"
+                style="@style/MaterialTextViewTitleStyle"
+                android:layout_width="@dimen/size_circle"
+                android:layout_height="@dimen/size_circle"
+                android:layout_marginEnd="@dimen/spacing_card_padding"
+                android:background="@drawable/bg_circle_invitees"
+                android:gravity="center"
+                android:padding="@dimen/spacing_icon_padding"
+                android:textColor="@color/colorWhite"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/txt_name"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:text_name_shortcut="@{invitees.name}"
+                tools:text="DB" />
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/txt_name"
+                style="@style/MaterialTextViewTitleStyle"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:ellipsize="end"
+                android:singleLine="true"
+                android:text="@{invitees.name,default=`NAME`}"
+                app:layout_constraintBottom_toTopOf="@id/txt_job_title"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/txt_icon_short_name"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/txt_job_title"
+                style="@style/MaterialTextViewBodyStyle"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_marginTop="10dp"
+                android:text="@{invitees.jobTitle,default=`JOB TITLE`}"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="@+id/txt_name"
+                app:layout_constraintTop_toBottomOf="@+id/txt_name" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </com.google.android.material.card.MaterialCardView>
+</layout>

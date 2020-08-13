@@ -1,0 +1,170 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="android.view.View" />
+
+        <import type="js.technology.session.utils.AppConstants" />
+
+        <variable
+            name="session"
+            type="js.technology.session.data.model.db.Session" />
+
+        <variable
+            name="position"
+            type="Integer" />
+
+        <variable
+            name="ongoing"
+            type="Integer" />
+
+        <variable
+            name="isThereAnySessionsOngoing"
+            type="Boolean" />
+
+        <variable
+            name="clickItem"
+            type="js.technology.session.ui.session.SessionClickEvent" />
+
+    </data>
+
+    <com.google.android.material.card.MaterialCardView
+        style="@style/MaterialCardViewStyle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@{isThereAnySessionsOngoing ? ongoing == AppConstants.DATE_ONGOING ? @drawable/bg_card_view : @drawable/bg_card_view_upcoming : ongoing == AppConstants.DATE_UPCOMING ?  @drawable/bg_card_view : @drawable/bg_card_view_upcoming }"
+            android:onClick="@{()->clickItem.SessionClick(position)}"
+            tools:background="@drawable/bg_card_view">
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/txt_date"
+                style="@style/MaterialTextViewTitleStyle"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:padding="@dimen/spacing_card_padding"
+                app:layout_constraintBottom_toTopOf="@id/txt_time"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:text_date="@{session.ActivityStartDate}"
+                tools:text="Sep 19, 2017" />
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/txt_time"
+                style="@style/MaterialTextViewTitleStyle"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:background="@{isThereAnySessionsOngoing ? ongoing == AppConstants.DATE_ONGOING ? @drawable/bg_time_ongoing : @drawable/bg_time_upcoming : ongoing == AppConstants.DATE_UPCOMING ?  @drawable/bg_time_ongoing : @drawable/bg_time_upcoming }"
+                android:gravity="center_horizontal"
+                android:padding="@dimen/spacing_medium"
+                android:singleLine="false"
+                android:textColor="@{isThereAnySessionsOngoing ? ongoing == AppConstants.DATE_ONGOING ? @color/colorWhite : @color/colorBlack : ongoing == AppConstants.DATE_UPCOMING ?  @color/colorWhite : @color/colorBlack }"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@id/txt_subject"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/txt_date"
+                app:layout_constraintWidth_percent="0.3"
+                app:text_start_time="@{session.ActivityStartDate}"
+                tools:background="@drawable/bg_time_ongoing"
+                tools:text="3:00 PM"
+                tools:textColor="@color/colorWhite" />
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/txt_subject"
+                style="@style/MaterialTextViewTitleStyle"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/spacing_icon_padding"
+                android:layout_marginEnd="@dimen/spacing_icon_padding"
+                android:layout_marginBottom="@dimen/spacing_medium"
+                android:text="@{session.Subject}"
+                android:textColor="@color/colorPrimary"
+                app:layout_constraintBottom_toTopOf="@id/txt_location"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/txt_time"
+                app:layout_constraintTop_toBottomOf="@+id/txt_date"
+                tools:text="Building Great Workout Apps" />
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/txt_location"
+                style="@style/MaterialTextViewBodyStyle"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="@{session.Location}"
+                android:visibility="@{isThereAnySessionsOngoing ? ongoing == AppConstants.DATE_ONGOING ? View.VISIBLE : View.GONE : ongoing == AppConstants.DATE_UPCOMING ?  View.VISIBLE : View.GONE }"
+                app:layout_constraintBottom_toTopOf="@id/txt_start_end_date"
+                app:layout_constraintEnd_toEndOf="@id/txt_subject"
+                app:layout_constraintStart_toStartOf="@id/txt_subject"
+                app:layout_constraintTop_toBottomOf="@+id/txt_subject"
+                tools:text="Address the BLVD, Dubai" />
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/txt_start_end_date"
+                style="@style/MaterialTextViewBodyStyle"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/spacing_medium"
+                android:visibility="@{isThereAnySessionsOngoing ? ongoing == AppConstants.DATE_ONGOING ? View.VISIBLE : View.GONE : ongoing == AppConstants.DATE_UPCOMING ?  View.VISIBLE : View.GONE }"
+                app:layout_constraintBottom_toTopOf="@+id/txt_icon_short_name"
+                app:layout_constraintEnd_toEndOf="@id/txt_subject"
+                app:layout_constraintStart_toStartOf="@id/txt_subject"
+                app:layout_constraintTop_toBottomOf="@+id/txt_location"
+                app:text_end_date="@{session.ActivityEndDate}"
+                app:text_start_date="@{session.ActivityStartDate}"
+                tools:text="3:00 - 4:00 AM" />
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/txt_icon_short_name"
+                style="@style/MaterialTextViewTitleStyle"
+                android:layout_width="@dimen/size_circle"
+                android:layout_height="@dimen/size_circle"
+                android:layout_marginTop="@dimen/spacing_medium"
+                android:layout_marginEnd="@dimen/spacing_icon_padding"
+                android:layout_marginBottom="@dimen/spacing_medium"
+                android:background="@drawable/bg_circle_owner"
+                android:clickable="true"
+                android:focusable="true"
+                android:gravity="center"
+                android:onClick="@{(view)->clickItem.IconClick(view,position)}"
+                android:padding="@dimen/spacing_icon_padding"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/txt_name"
+                app:layout_constraintStart_toStartOf="@id/txt_subject"
+                app:layout_constraintTop_toBottomOf="@+id/txt_start_end_date"
+                app:text_name_shortcut="@{session.Owner}"
+                tools:text="DB" />
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/txt_name"
+                style="@style/MaterialTextViewTitleStyle"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_marginEnd="@dimen/spacing_icon_padding"
+                android:layout_marginBottom="@dimen/spacing_medium"
+                android:text="@{session.Owner,default=`NAME`}"
+                app:layout_constraintBottom_toTopOf="@id/txt_account_name"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/txt_icon_short_name"
+                app:layout_constraintTop_toTopOf="@id/txt_icon_short_name" />
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/txt_account_name"
+                style="@style/MaterialTextViewBodyStyle"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:text="@{session.AccountName,default=`JOB TITLE`}"
+                app:layout_constraintBottom_toBottomOf="@id/txt_icon_short_name"
+                app:layout_constraintEnd_toEndOf="@id/txt_name"
+                app:layout_constraintStart_toStartOf="@+id/txt_name"
+                app:layout_constraintTop_toBottomOf="@+id/txt_name" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </com.google.android.material.card.MaterialCardView>
+</layout>
