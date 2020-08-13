@@ -2,7 +2,6 @@ package js.technology.session.ui.session;
 
 import androidx.databinding.ObservableArrayList;
 import androidx.databinding.ObservableList;
-import dagger.android.AndroidInjection;
 import io.reactivex.Observable;
 import js.technology.session.R;
 import js.technology.session.data.model.db.InviteesList;
@@ -36,10 +35,6 @@ public class SessionsActivity extends BaseActivity<ActivitySessionsBinding> impl
         sessionsObservableList = new ObservableArrayList<>();
         //Assign activity Binding From BaseActivity Which have defined and get it layout id
         performDataBinding();
-    }
-
-    public void performDependencyInjection() {
-        AndroidInjection.inject(this);
     }
 
     private void performDataBinding() {

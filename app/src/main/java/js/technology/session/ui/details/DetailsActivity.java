@@ -2,7 +2,6 @@ package js.technology.session.ui.details;
 
 import androidx.databinding.ObservableArrayList;
 import androidx.databinding.ObservableList;
-import dagger.android.AndroidInjection;
 import js.technology.session.R;
 import js.technology.session.data.model.db.Invitees;
 import js.technology.session.databinding.ActivityDetailsBinding;
@@ -39,10 +38,6 @@ public class DetailsActivity extends BaseActivity<ActivityDetailsBinding> implem
 
     public ObservableList<Invitees> getInviteesObservableList() {
         return inviteesObservableList;
-    }
-
-    public void performDependencyInjection() {
-        AndroidInjection.inject(this);
     }
 
     private void performDataBinding() {
