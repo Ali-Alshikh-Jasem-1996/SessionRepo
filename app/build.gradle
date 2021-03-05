@@ -33,6 +33,10 @@ dependencies {
     implementation "androidx.constraintlayout:constraintlayout:$rootProject.constraintLayoutVersion"
     implementation "com.google.android.material:material:$rootProject.materialVersion"
 
+    //AV Loading Indicator View
+    implementation 'com.wang.avi:library:2.1.3'
+
+
     // parser
     implementation "com.google.code.gson:gson:$rootProject.gsonVersion"
 
@@ -41,6 +45,8 @@ dependencies {
     annotationProcessor "com.google.dagger:dagger-compiler:$rootProject.dagger2Version"
     annotationProcessor "com.google.dagger:dagger-android-processor:$rootProject.dagger2Version"
     implementation "com.google.dagger:dagger-android-support:$rootProject.dagger2Version"
+    //Fresco
+    implementation "com.facebook.fresco:fresco:0.14.1"
 
     // reactive
     implementation "io.reactivex.rxjava2:rxjava:$rootProject.rxjava2Version"
@@ -54,11 +60,14 @@ dependencies {
     implementation 'androidx.lifecycle:lifecycle-extensions:2.2.0'
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'
     testImplementation 'junit:junit:4.13'
-    androidTestImplementation 'androidx.test.ext:junit:1.1.1'
-    androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
+    androidTestImplementation 'androidx.test.ext:junit:1.1.2'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
+
+    //Fresco
+    implementation "com.facebook.fresco:fresco:0.14.1"
 
     testAnnotationProcessor "com.google.dagger:dagger-compiler:$rootProject.dagger2Version"
-    androidTestImplementation 'androidx.test.ext:junit:1.1.1'
+    androidTestImplementation 'androidx.test.ext:junit:1.1.2'
 
     // UI Testing
     androidTestImplementation "androidx.test.espresso:espresso-intents:$rootProject.espressoVersion"

@@ -12,6 +12,9 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class DetailsActivity extends BaseActivity<ActivityDetailsBinding> implements InviteeClickEvent {
 
     private AdapterInvitees adapterInvitees;
@@ -34,6 +37,11 @@ public class DetailsActivity extends BaseActivity<ActivityDetailsBinding> implem
         sessionId = getIntent().getLongExtra(AppConstants.EXTRAS_SESSION_ID, -1);
         //Assign activity Binding From BaseActivity Which have defined and get it layout id
         performDataBinding();
+
+        List<String> images = new ArrayList<>();
+        images.add("https://cdn.shopify.com/s/files/1/0362/4920/6921/files/2_5465497702663980914_e312a09c-b482-4e9a-8053-051fe023fef5.jpg");
+        images.add("https://cdn.shopify.com/s/files/1/0362/4920/6921/files/2_5465497702663980915_ea2fb087-a2a3-410c-a5f1-01e793b9b061.jpg?v=1591183464");
+        images.add("https://cdn.shopify.com/s/files/1/0362/4920/6921/files/Lebensmittel_1_1080x.jpeg?v=1596297420");
     }
 
     public ObservableList<Invitees> getInviteesObservableList() {

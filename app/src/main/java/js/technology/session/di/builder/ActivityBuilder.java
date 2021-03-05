@@ -2,6 +2,7 @@ package js.technology.session.di.builder;
 
 import dagger.Module;
 import dagger.android.ContributesAndroidInjector;
+import js.technology.session.ui.ActivitySplashScreen;
 import js.technology.session.ui.details.DetailsActivity;
 import js.technology.session.ui.session.SessionsActivity;
 

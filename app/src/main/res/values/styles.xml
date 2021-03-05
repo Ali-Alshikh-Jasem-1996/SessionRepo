@@ -8,6 +8,18 @@
         <item name="fontFamily">@font/corporative_regular</item>
     </style>
 
+    <style name="SplashScreen" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="android:windowBackground">@drawable/background_splash_screen</item>
+    </style>
+
+    <style name="ShopifyDraweeView">
+        <item name="failureImage">@drawable/ic_back</item>
+        <item name="failureImageScaleType">fitCenter</item>
+        <item name="placeholderImage">@drawable/ic_back</item>
+        <item name="placeholderImageScaleType">fitXY</item>
+        <item name="android:foreground">?android:attr/selectableItemBackground</item>
+    </style>
+
     <style name="MaterialCardViewStyle" parent="Widget.MaterialComponents.CardView">
         <item name="cardCornerRadius">@dimen/spacing_medium</item>
         <item name="cardElevation">@dimen/spacing_medium</item>
@@ -32,6 +44,16 @@
         <item name="android:textColor">@color/colorWhite</item>
         <item name="android:ellipsize">end</item>
         <item name="android:singleLine">true</item>
+    </style>
+
+
+    <!--AV Loading-->
+    <style name="AVLoadingIndicatorView">
+        <item name="minWidth">48dp</item>
+        <item name="maxWidth">48dp</item>
+        <item name="minHeight">48dp</item>
+        <item name="maxHeight">48dp</item>
+        <item name="indicatorName">LineSpinFadeLoaderIndicator</item>
     </style>
 
 </resources>

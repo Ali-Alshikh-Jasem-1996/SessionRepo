@@ -20,6 +20,7 @@ public class SessionsActivity extends BaseActivity<ActivitySessionsBinding> impl
 
     private AdapterSession adapterSession;
     private ObservableList<Session> sessionsObservableList;
+    private ActivitySessionsBinding activitySessionsBinding;
 
     @Override
     public int getLayoutId() {
@@ -39,7 +40,8 @@ public class SessionsActivity extends BaseActivity<ActivitySessionsBinding> impl
 
     private void performDataBinding() {
         //get binding activity view
-        ActivitySessionsBinding activitySessionsBinding = getViewDataBinding();
+        activitySessionsBinding = getViewDataBinding();
+
         //set variable activity
         activitySessionsBinding.setActivity(this);
         //set variable session listener
@@ -70,6 +72,7 @@ public class SessionsActivity extends BaseActivity<ActivitySessionsBinding> impl
     }
 
     private void startSeedingSessions() {
+        activitySessionsBinding.avi.show();
         //seed all sessions
         getCompositeDisposable().add(seedSessions()
                 .subscribeOn(getSchedulerProvider().io())
@@ -100,8 +103,10 @@ public class SessionsActivity extends BaseActivity<ActivitySessionsBinding> impl
         getCompositeDisposable().add(getDbHelper().getAllSessions()
                 .subscribeOn(getSchedulerProvider().io())
                 .observeOn(getSchedulerProvider().ui())
-                .subscribe(sessions -> sessionsObservableList.addAll(sessions),
-                        throwable -> Log.d("TAG", "seedSessions: " + throwable)));
+                .subscribe(sessions -> {
+                    activitySessionsBinding.avi.hide();
+                    sessionsObservableList.addAll(sessions);
+                }, throwable -> Log.d("TAG", "seedSessions: " + throwable)));
     }
 
     private void startSeedingInvitees() {
@@ -111,6 +116,7 @@ public class SessionsActivity extends BaseActivity<ActivitySessionsBinding> impl
                 .observeOn(getSchedulerProvider().ui())
                 .subscribe(isSuccess -> {
                     //getAllInvitees();
+                    activitySessionsBinding.avi.hide();
                     Log.d("TAG", "seedInvitees: " + isSuccess);
                 }, throwable -> Log.d("TAG", "seedInvitees: " + throwable)));
     }

@@ -3,6 +3,8 @@ package js.technology.session;
 import android.app.Activity;
 import android.app.Application;
 
+import com.facebook.drawee.backends.pipeline.Fresco;
+
 import javax.inject.Inject;
 
 import dagger.android.DispatchingAndroidInjector;
@@ -28,5 +30,7 @@ public class SessionApp extends Application implements HasActivityInjector {
                 .application(this)
                 .build()
                 .inject(this);
+
+        Fresco.initialize(this);
     }
 }
